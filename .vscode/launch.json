@@ -1,23 +1,88 @@
-
 {
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable",
+            "name": "Debug unit tests in library 'rust_algos'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=rust_algos"
+                ],
+                "filter": {
+                    "name": "rust_algos",
+                    "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'rust_algos'",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=hello_remote_world",
-                    "--package=hello_remote_world",
-                    "--manifest-path=Cargo.toml"
+                    "--bin=rust_algos",
+                    "--package=rust_algos"
                 ],
                 "filter": {
+                    "name": "rust_algos",
                     "kind": "bin"
                 }
             },
-            "args": []
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'rust_algos'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=rust_algos",
+                    "--package=rust_algos"
+                ],
+                "filter": {
+                    "name": "rust_algos",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
         }
     ]
 }
+
+
+// {
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             "type": "lldb",
+//             "request": "launch",
+//             "name": "Debug executable",
+//             "cargo": {
+//                 "args": [
+//                     "build",
+//                     "--bin=hello_remote_world",
+//                     "--package=hello_remote_world",
+//                     "--manifest-path=Cargo.toml"
+//                 ],
+//                 "filter": {
+//                     "kind": "bin"
+//                 }
+//             },
+//             "args": []
+//         }
+//     ]
+// }
