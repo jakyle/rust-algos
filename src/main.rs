@@ -1,23 +1,44 @@
-/*--------------------------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
- *-------------------------------------------------------------------------------------------------------------*/
+mod array_strings_are_equal;
+mod balanced_string_split;
+mod check_perfect_number;
+mod common_chars;
+mod count_consistent_strings;
+mod count_good_triplets;
+mod count_primes;
+mod decompress_rl_elist;
+mod dest_city;
+mod duplicate_zeroes;
+mod fib;
+mod find_numbers_with_even_digits;
+mod find_special_integer;
+mod find_words;
+mod fizz_buzz;
+mod is_palindrome;
+mod is_power_of_four;
+mod kids_with_greatest_numbers_of_candy;
+mod max_depth;
+mod max_sub_array;
+mod maximum69_number;
+mod maximum_wealth;
+mod merge_alternately;
+mod min_time_to_visit_all_points;
+mod nearest_valid_point;
+mod num_teams;
+mod odd_cells;
+mod parking_system;
+mod repeated_n_times;
+mod self_dividing_number;
+mod self_price;
+mod shuffle;
+mod shuffle_string;
+mod single_number;
+mod smaller_than_the_current_number;
+mod subtract_product_and_sum;
+mod sum_odd_length_subarrays;
+mod sum_of_unique;
+mod unique_occurrences;
+mod word_pattern;
+mod buddy_strings;
+mod SubrectangleQueries;
 
- mod find_numbers_with_even_digits;
- mod kids_with_greatest_numbers_of_candy;
- mod smaller_than_the_current_number;
- mod subtract_product_and_sum;
- mod maximum69_number;
- mod decompress_rl_elist;
- mod min_time_to_visit_all_points;
- mod dest_city;
- mod unique_occurrences;
- mod find_words;
- mod find_special_integer;
- mod check_perfect_number;
- mod shuffle_string;
-
-fn main() {
-    let name = "VS Code Remote - Containers";
-    println!("Hello, {}!", name);
-}
+fn main() {}

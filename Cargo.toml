@@ -6,3 +6,8 @@ authors = ["James Jackson <jjackson360@gmail.com>"]
 [lib]
 path ="./src/lib/lib.rs"
 
+[dependencies]
+env_logger = "0.8.1"
+log = "0.4.11"
+rand = "0.8"
+

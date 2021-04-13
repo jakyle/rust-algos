@@ -1,9 +1,8 @@
 pub fn subtract_product_and_sum(n: i32) -> i32 {
-
     let mut n = n;
 
     let mut product = 1;
-    let mut sum = 0; 
+    let mut sum = 0;
 
     while n > 0 {
         let num = n % 10;
@@ -14,7 +13,7 @@ pub fn subtract_product_and_sum(n: i32) -> i32 {
         n /= 10;
     }
 
-   product - sum
+    product - sum
 }
 
 #[cfg(test)]
@@ -23,7 +22,6 @@ mod subtract_product_and_sum_tests {
 
     #[test]
     fn subtract_product_and_sum_test_one() {
-
         // arrange
         let test = 234;
 
@@ -36,7 +34,6 @@ mod subtract_product_and_sum_tests {
 
     #[test]
     fn subtract_product_and_sum_test_two() {
-
         // arrange
         let test = 4421;
 
@@ -46,5 +43,4 @@ mod subtract_product_and_sum_tests {
         // assert
         assert_eq!(result, 21);
     }
-
 }

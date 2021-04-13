@@ -15,9 +15,8 @@ mod unique_occurrences_tests {
 
     #[test]
     fn unique_occurrences_test_one() {
-
         // arrange
-        let test = vec![1,2,2,1,1,3];
+        let test = vec![1, 2, 2, 1, 1, 3];
 
         // act
         let result = unique_occurrences(test);
@@ -28,9 +27,8 @@ mod unique_occurrences_tests {
 
     #[test]
     fn unique_occurrences_test_two() {
-
         // arrange
-        let test = vec![-3,0,1,-3,1,1,1,-3,10,0];
+        let test = vec![-3, 0, 1, -3, 1, 1, 1, -3, 10, 0];
 
         // act
         let result = unique_occurrences(test);
@@ -41,7 +39,6 @@ mod unique_occurrences_tests {
 
     #[test]
     fn unique_occurrences_test_three() {
-
         // arrange
         let test = vec![1, 2];
 

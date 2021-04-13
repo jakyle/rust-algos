@@ -1,9 +1,7 @@
 pub fn find_numbers(x: Vec<i32>) -> i32 {
-        
     let mut result = 0;
 
     for num in x {
-
         let mut y = num;
         let mut digits = 0;
 
@@ -20,8 +18,6 @@ pub fn find_numbers(x: Vec<i32>) -> i32 {
     result
 }
 
-
-
 #[cfg(test)]
 mod find_numbers_with_even_digits_tests {
     use super::*;
@@ -29,7 +25,7 @@ mod find_numbers_with_even_digits_tests {
     #[test]
     fn two_even_digits() {
         // arrange
-        let test = vec![12,345,2,6,7896];
+        let test = vec![12, 345, 2, 6, 7896];
 
         // act
         let result = find_numbers(test);
@@ -37,5 +33,4 @@ mod find_numbers_with_even_digits_tests {
         // assert
         assert_eq!(result, 2);
     }
-
 }

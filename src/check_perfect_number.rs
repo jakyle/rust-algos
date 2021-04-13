@@ -1,5 +1,4 @@
 pub fn check_perfect_number(num: i32) -> bool {
-    
     let result: f64 = (2..num + 1)
         .map(|x| num as f64 / x as f64)
         .filter(|x| x % 1.0 == 0.0)
@@ -27,7 +26,6 @@ mod check_perfect_number_tests {
 
     #[test]
     fn check_perfect_number_test_one() {
-
         // arrange
         let test = 28;
 
