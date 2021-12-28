@@ -18,7 +18,7 @@ mod int_to_roman_tests {
     use super::*;
 
     #[test]
-    fn one_is_I() {
+    fn one_is_i() {
         assert_eq!(int_to_roman(1), "I".to_string());
     }
 

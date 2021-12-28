@@ -11,9 +11,7 @@ impl Point {
     pub fn find_distance_to(&self, point: &Point) -> i32 {
         use std::cmp;
 
-        let distance = cmp::max(i32::abs(self.x - point.x), i32::abs(self.y - point.y));
-
-        distance
+        cmp::max(i32::abs(self.x - point.x), i32::abs(self.y - point.y))
     }
 }
 

@@ -50,14 +50,12 @@ pub fn deepest_leaves_sum_bfs(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
     sum
 }
 
-use std::collections::HashMap;
-
 pub fn deepest_leaves_sum_dfs(mut root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
     fn count(
         tree: &mut Rc<RefCell<TreeNode>>,
         mut sum: &mut i32,
         depth: i32,
-        mut best_depth: &mut i32,
+        best_depth: &mut i32,
     ) {
         let mut node = tree.borrow_mut();
 

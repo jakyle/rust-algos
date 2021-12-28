@@ -8,15 +8,12 @@ pub fn move_zeroes(nums: &mut Vec<i32>) {
     }
 }
 
-
-
 #[cfg(test)]
 mod move_zeroes_tests {
     use super::*;
 
     #[test]
     fn move_zeroes_one() {
-
         let mut nums = vec![0, 1, 0, 3, 12];
 
         move_zeroes(&mut nums);
@@ -26,7 +23,6 @@ mod move_zeroes_tests {
 
     #[test]
     fn move_zeroes_two() {
-
         let mut nums = vec![0];
 
         move_zeroes(&mut nums);
@@ -36,7 +32,6 @@ mod move_zeroes_tests {
 
     #[test]
     fn move_zeroes_three() {
-
         let mut nums = vec![0, 0, 1];
 
         move_zeroes(&mut nums);
@@ -46,7 +41,6 @@ mod move_zeroes_tests {
 
     #[test]
     fn move_zeroes_four() {
-
         let mut nums = vec![2, 9, 0, 6, 1];
 
         move_zeroes(&mut nums);
