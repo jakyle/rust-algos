@@ -1,14 +1,10 @@
 pub fn fizz_buzz(n: i32) -> Vec<String> {
     (1..=n)
-        .map(|x| {
-            let by3 = x % 3 == 0;
-            let by5 = x % 5 == 0;
-            match (x % 3 == 0, x % 5 == 0) {
-                (true, true) => "FizzBuzz".into(),
-                (true, false) => "Fizz".into(),
-                (false, true) => "Buzz".into(),
-                (false, false) => x.to_string(),
-            }
+        .map(|x| match (x % 3 == 0, x % 5 == 0) {
+            (true, true) => "FizzBuzz".into(),
+            (true, false) => "Fizz".into(),
+            (false, true) => "Buzz".into(),
+            (false, false) => x.to_string(),
         })
         .collect()
 }

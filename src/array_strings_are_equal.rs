@@ -49,6 +49,6 @@ mod array_strings_are_equal_tests {
         let result = array_strings_are_equal(word_1, word_2);
 
         // assert
-        assert!(result, true);
+        assert_eq!(result, true);
     }
 }
