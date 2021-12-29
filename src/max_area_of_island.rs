@@ -5,41 +5,36 @@ pub fn max_area_of_island(grid: Vec<Vec<i32>>) -> i32 {
     for x in 0..width {
         for y in 0..height {
             if grid[x][y] == 1 && !visited[x][y] {
-                total = total.max(area_of_island(&grid, &mut visited, x, y));
+                total = total.max(area_of_island(&grid, width, height, &mut visited, x, y));
             }
         }
     }
-
     total
 }
 
-fn area_of_island(grid: &Vec<Vec<i32>>, visited: &mut Vec<Vec<bool>>, x: usize, y: usize) -> i32 {
-    let dirs: [(i32, i32); 4] = [(-1, 0), (0, 1), (1, 0), (0, -1)];
-    let (width, height) = (grid.len(), grid[0].len());
-    let mut counter = 0;
+fn area_of_island(
+    grid: &Vec<Vec<i32>>,
+    w: usize,
+    h: usize,
+    visited: &mut Vec<Vec<bool>>,
+    x: usize,
+    y: usize,
+) -> i32 {
     visited[x][y] = true;
-    let mut stack = vec![(x, y)];
-    while let Some((r, c)) = stack.pop() {
+    let vis = std::cell::RefCell::new(visited);
+    let (mut stack, mut counter) = (vec![(x, y)], 0);
+    const DIRS: [(i32, i32); 4] = [(-1, 0), (0, 1), (1, 0), (0, -1)];
+
+    while let Some((row, col)) = stack.pop() {
         counter += 1;
-        let island_neighbors = dirs.iter()
-            .map(|(dx, dy)| (r as i32 + dx, c as i32 + dy))
-            .filter(|&(x, y)| {
-                x >= 0
-                    && x < width as i32
-                    && y >= 0
-                    && y < height as i32
-                    && grid[x as usize][y as usize] == 1
-            })
-            .map(|(x, y)| (x as usize, y as usize));
-
-        for (x, y) in island_neighbors {
-            if !visited[x][y] {
+        DIRS.iter()
+            .map(|(dx, dy)| ((row as i32 + dx) as usize, (col as i32 + dy) as usize))
+            .filter(|&(x, y)| x < w && y < h && grid[x][y] == 1 && !vis.borrow()[x][y])
+            .for_each(|(x, y)| {
                 stack.push((x, y));
-                visited[x][y] = true;
-            }
-        }
+                vis.borrow_mut()[x][y] = true;
+            });
     }
-
     counter
 }
 
