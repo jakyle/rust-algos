@@ -23,6 +23,6 @@ mod $fnName`_tests {
 }
 "@
 
-Add-Content "./src/lib.rs" "mod $fnName`;"
+Add-Content "./src/lib.rs" "pub mod $fnName`;"
 
 New-Item -Path './src' -Name "$fnName`.rs" -ItemType "file" -Value $content

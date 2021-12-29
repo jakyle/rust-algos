@@ -1,5 +1,5 @@
 [package]
-name = "rust-algos"
+name = "rust_algos"
 version = "0.1.0"
 edition = "2021"
 authors = ["James Jackson <jjackson360@gmail.com>"]

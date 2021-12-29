@@ -13,7 +13,7 @@ impl ListNode {
 
 pub fn merge_two_lists(
     list1: Option<Box<ListNode>>,
-    list2: Option<Box<ListNode>>,
+    _list2: Option<Box<ListNode>>,
 ) -> Option<Box<ListNode>> {
     // while let (Some(one), Some(two)) = (&list1, &list2) {
     //     let next_one_node = Box::new(ListNode::new(one.val));

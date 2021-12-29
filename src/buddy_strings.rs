@@ -4,11 +4,11 @@
 /// swapping the characters at a[i] and b[j]. For example, swapping at indices 0 and 2 in "abcd" results in "cbad".
 pub fn buddy_strings(a: String, b: String) -> bool {
     let a_chars = a.chars().collect::<Vec<char>>();
-    let b_chars = b.chars().collect::<Vec<char>>();
+    let _b_chars = b.chars().collect::<Vec<char>>();
     let len = a_chars.len();
 
     for i in 0..len {
-        for j in i + 1..len {}
+        for _j in i + 1..len {}
     }
 
     true

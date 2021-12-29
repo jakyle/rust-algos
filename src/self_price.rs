@@ -1,10 +1,10 @@
 pub fn final_prices(prices: Vec<i32>) -> Vec<i32> {
-    let result: Vec<i32> = vec![];
+    let _result: Vec<i32> = vec![];
 
     let len = prices.len();
 
     for i in 0..len {
-        for j in i + 1..len {}
+        for _j in i + 1..len {}
     }
 
     vec![4, 2, 4, 2, 3]
