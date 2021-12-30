@@ -1,4 +1,4 @@
-use std::{cell::RefCell, rc::Rc, borrow::BorrowMut, sync::WaitTimeoutResult};
+use std::{cell::RefCell, rc::Rc};
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {
@@ -19,7 +19,6 @@ impl TreeNode {
         }
     }
 
-
     pub fn new_node(val: TreeNode) -> Node {
         Some(Rc::new(RefCell::new(val)))
     }
@@ -28,39 +27,37 @@ impl TreeNode {
 type NodeRef = Rc<RefCell<TreeNode>>;
 
 pub fn merge_tree_iter(a: Option<NodeRef>, b: Option<NodeRef>) -> Option<NodeRef> {
-    let result = a.as_ref().map(|r| Rc::clone(r));
-    let mut stack = vec![(a, b)];
+    let result = a
+        .as_ref()
+        .map(Rc::clone)
+        .or_else(|| b.as_ref().map(Rc::clone));
 
-    while let Some((a, b)) = stack.pop() {
-        if let (Some(mut a), Some(b)) = (
-            a.as_deref().map(|x| RefCell::borrow_mut(x)),
-            b.as_deref().map(RefCell::borrow)                
-        ) {
+    if let (Some(a), Some(b)) = (&a, &b) {
+        let mut stack = vec![(Rc::clone(a), Rc::clone(b))];
+        while let Some((a, b)) = stack.pop() {
+            let (mut a, mut b) = (RefCell::borrow_mut(&a), RefCell::borrow_mut(&b));
             a.val += b.val;
 
-            if let Some(b_left) = &b.left {
-                let b_left = Rc::clone(b_left);
-                if let Some(a_left) = &a.left {
-                    stack.push((Some(Rc::clone(&a_left)), Some(b_left)))
-                } else {
-                    a.left = Some(b_left);
+            match (&a.left, &b.left) {
+                (Some(a), Some(b)) => stack.push((Rc::clone(a), Rc::clone(b))),
+                (None, Some(b)) => {
+                    a.left.replace(Rc::clone(b));
                 }
+                _ => (),
             }
 
-            if let Some(b_right) = &b.right {
-                let b_right = Rc::clone(b_right);
-                if let Some(a_right) = &a.right {
-                    stack.push((Some(Rc::clone(a_right)), Some(b_right)))
-                } else {
-                    a.right = Some(b_right);
+            match (&a.right, &b.right) {
+                (Some(a), Some(b)) => stack.push((Rc::clone(a), Rc::clone(b))),
+                (None, Some(b)) => {
+                    a.right.replace(Rc::clone(b));
                 }
+                _ => (),
             }
         }
     }
 
     result
 }
-
 
 pub fn merge_trees(a: Option<NodeRef>, b: Option<NodeRef>) -> Option<NodeRef> {
     if let (Some(mut a), Some(mut b)) = (
@@ -78,7 +75,6 @@ pub fn merge_trees(a: Option<NodeRef>, b: Option<NodeRef>) -> Option<NodeRef> {
 mod merge_trees_tests {
     use super::*;
 
-
     #[test]
     fn merge_trees_test_one() {
         // head
@@ -92,7 +88,6 @@ mod merge_trees_tests {
         node_one.right = TreeNode::new_node(right);
         let node_one = TreeNode::new_node(node_one);
 
-
         let mut node_two = TreeNode::new(2);
         let mut left = TreeNode::new(1);
         let left_right = TreeNode::new(4);
@@ -104,7 +99,6 @@ mod merge_trees_tests {
         node_two.left = TreeNode::new_node(left);
         node_two.right = TreeNode::new_node(right);
         let node_two = TreeNode::new_node(node_two);
-
 
         let mut result_node = TreeNode::new(3);
         let mut left = TreeNode::new(4);

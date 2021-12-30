@@ -9,7 +9,7 @@ pub fn find_center(edges: Vec<Vec<i32>>) -> i32 {
         }
     }
 
-    if let Some(kvp) = count.iter().max_by(|a, b| a.1.cmp(&b.1)) {
+    if let Some(kvp) = count.iter().max_by(|a, b| a.1.cmp(b.1)) {
         *kvp.0
     } else {
         0

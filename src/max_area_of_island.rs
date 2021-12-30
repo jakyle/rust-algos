@@ -13,7 +13,7 @@ pub fn max_area_of_island(grid: Vec<Vec<i32>>) -> i32 {
 }
 
 fn area_of_island(
-    grid: &Vec<Vec<i32>>,
+    grid: &[Vec<i32>],
     w: usize,
     h: usize,
     visited: &mut Vec<Vec<bool>>,

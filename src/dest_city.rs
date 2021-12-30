@@ -1,12 +1,7 @@
 pub fn dest_city(paths: Vec<Vec<String>>) -> String {
     use std::collections::HashSet;
     let src_cities: HashSet<&String> = paths.iter().map(|v| &v[0]).collect();
-    paths
-        .iter()
-        .filter(|v| !src_cities.contains(&v[1]))
-        .next()
-        .unwrap()[1]
-        .clone()
+    paths.iter().find(|v| !src_cities.contains(&v[1])).unwrap()[1].clone()
 }
 
 #[cfg(test)]
