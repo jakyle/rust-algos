@@ -23,7 +23,7 @@ fn area_of_island(
     visited[x][y] = true;
     let vis = std::cell::RefCell::new(visited);
     let (mut stack, mut counter) = (vec![(x, y)], 0);
-    const DIRS: [(i32, i32); 4] = [(-1, 0), (0, 1), (1, 0), (0, -1)];
+    static DIRS: [(i32, i32); 4] = [(-1, 0), (0, 1), (1, 0), (0, -1)];
 
     while let Some((row, col)) = stack.pop() {
         counter += 1;
@@ -45,24 +45,21 @@ mod max_area_of_island_tests {
     #[test]
     fn max_area_of_island_test_one() {
         let grid = vec![
-            vec![0,0,1,0,0,0,0,1,0,0,0,0,0],
-            vec![0,0,0,0,0,0,0,1,1,1,0,0,0],
-            vec![0,1,1,0,1,0,0,0,0,0,0,0,0],
-            vec![0,1,0,0,1,1,0,0,1,0,1,0,0],
-            vec![0,1,0,0,1,1,0,0,1,1,1,0,0],
-            vec![0,0,0,0,0,0,0,0,0,0,1,0,0],
-            vec![0,0,0,0,0,0,0,1,1,1,0,0,0],
-            vec![0,0,0,0,0,0,0,1,1,0,0,0,0]
+            vec![0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            vec![0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+            vec![0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+            vec![0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],
+            vec![0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
+            vec![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+            vec![0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+            vec![0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
         ];
         assert_eq!(max_area_of_island(grid), 6);
     }
 
     #[test]
     fn max_area_of_island_test_two() {
-        let grid = vec![
-            vec![0,1],
-            vec![1,0]
-        ];
+        let grid = vec![vec![0, 1], vec![1, 0]];
         assert_eq!(max_area_of_island(grid), 1);
     }
 }

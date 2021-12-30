@@ -20,7 +20,6 @@ use std::rc::Rc;
 
 pub fn deepest_leaves_sum_bfs(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
     use std::collections::VecDeque;
-    type Node = Rc<RefCell<TreeNode>>;
 
     let mut dq = VecDeque::new();
 
