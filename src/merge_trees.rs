@@ -35,7 +35,7 @@ pub fn merge_tree_iter(a: Option<NodeRef>, b: Option<NodeRef>) -> Option<NodeRef
     if let (Some(a), Some(b)) = (&a, &b) {
         let mut stack = vec![(Rc::clone(a), Rc::clone(b))];
         while let Some((a, b)) = stack.pop() {
-            let (mut a, mut b) = (RefCell::borrow_mut(&a), RefCell::borrow_mut(&b));
+            let (mut a, b) = (RefCell::borrow_mut(&a), RefCell::borrow_mut(&b));
             a.val += b.val;
 
             match (&a.left, &b.left) {

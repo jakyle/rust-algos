@@ -20,33 +20,22 @@ use std::{cell::RefCell, rc::Rc};
 type Node = Option<Rc<RefCell<TreeNode>>>;
 
 pub fn is_same_tree(p: Node, q: Node) -> bool {
-    match (&p, &q) {
-        (None, None) => true,
-        (Some(p), Some(q)) => {
-            let mut stack = vec![(Rc::clone(p), Rc::clone(q))];
-            while let Some((a, b)) = stack.pop() {
-                let (a, b) = (RefCell::borrow(&a), RefCell::borrow(&b));
-
-                if a.val != b.val {
-                    return false;
-                }
-
-                match (&a.left, &b.left) {
-                    (Some(a), Some(b)) => stack.push((Rc::clone(a), Rc::clone(b))),
-                    (None, None) => (),
-                    _ => return false,
-                }
-
-                match (&a.right, &b.right) {
-                    (Some(a), Some(b)) => stack.push((Rc::clone(a), Rc::clone(b))),
-                    (None, None) => (),
-                    _ => return false,
-                }
+    let mut stack = vec![(p, q)];
+    while let Some((a, b)) = stack.pop() {
+        match (
+            a.as_deref().map(RefCell::borrow_mut),
+            b.as_deref().map(RefCell::borrow_mut),
+        ) {
+            (Some(mut a), Some(mut b)) if a.val == b.val => {
+                stack.push((a.left.take(), b.left.take()));
+                stack.push((a.right.take(), b.right.take()));
             }
-            true
+            (Some(_), Some(_)) | (Some(_), None) | (None, Some(_)) => return false,
+            (None, None) => (),
         }
-        _ => false,
     }
+
+    true
 }
 
 pub fn is_same_tree_recursive(p: Node, q: Node) -> bool {
