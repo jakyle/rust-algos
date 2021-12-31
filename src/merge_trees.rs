@@ -32,26 +32,21 @@ pub fn merge_tree_iter(a: Option<NodeRef>, b: Option<NodeRef>) -> Option<NodeRef
         .map(Rc::clone)
         .or_else(|| b.as_ref().map(Rc::clone));
 
-    if let (Some(a), Some(b)) = (&a, &b) {
-        let mut stack = vec![(Rc::clone(a), Rc::clone(b))];
-        while let Some((a, b)) = stack.pop() {
-            let (mut a, b) = (RefCell::borrow_mut(&a), RefCell::borrow_mut(&b));
+    let mut stack = vec![(a, b)];
+    while let Some((a, b)) = stack.pop() {
+        if let (Some(mut a), Some(mut b)) = (
+            a.as_deref().map(RefCell::borrow_mut),
+            b.as_deref().map(RefCell::borrow_mut),
+        ) {
             a.val += b.val;
-
-            match (&a.left, &b.left) {
-                (Some(a), Some(b)) => stack.push((Rc::clone(a), Rc::clone(b))),
-                (None, Some(b)) => {
-                    a.left.replace(Rc::clone(b));
-                }
-                _ => (),
+            match a.left.is_some() {
+                true => stack.push((a.left.take(), b.left.take())),
+                false => a.left = b.left.take(),
             }
 
-            match (&a.right, &b.right) {
-                (Some(a), Some(b)) => stack.push((Rc::clone(a), Rc::clone(b))),
-                (None, Some(b)) => {
-                    a.right.replace(Rc::clone(b));
-                }
-                _ => (),
+            match a.right.is_some() {
+                true => stack.push((a.right.take(), b.right.take())),
+                false => a.right = b.right.take(),
             }
         }
     }
